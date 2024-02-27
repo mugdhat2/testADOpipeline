@@ -1,0 +1,29 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  name: default
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+- task: CmdLine@2
+  inputs:
+    script: |
+      git init
+      git remote add origin git@github.com:mugdhat2/testADOpipeline
+      git tag -a v2.0 -m 'version 2.0'
+      git add .
+      git commit -m "New Version 2.0 :rocket:"
+      git push -u origin v2.0
+    workingDirectory: 'https://devops.cdph.ca.gov/DCDC/covid19-projects/_git/CalCAT_OpenSource_DEV'
